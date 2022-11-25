@@ -3,7 +3,23 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-import App from './components/App';
+import App from './components/App.vue';
+import Vue from 'vue'
+
+/* import the fontawesome core */
+import { library } from '@fortawesome/fontawesome-svg-core'
+
+/* import font awesome icon component */
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+/* import specific icons */
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+
+/* add icons to the library */
+library.add(faPlus)
+
+/* add font awesome icon component */
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 require('./bootstrap');
 
 window.Vue = require('vue');

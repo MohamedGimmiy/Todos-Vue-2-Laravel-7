@@ -11,7 +11,9 @@ composer require laravel/ui:^2.4
 php artisan ui vue
 
 npm i
-
+// run vue loader for mix and add .vue()
+https://stackoverflow.com/questions/65607153/how-to-fix-the-error-you-may-need-an-appropriate-loader-to-handle-this-file-typ
+npm install vue-loader@^15.9.8 --save-dev --legacy-peer-deps
 npm run watch
 
 // utf-8
@@ -21,3 +23,9 @@ npm run watch
 
 // make controller filled
 php artisan make:controller TodosController -r
+
+// install fontawesome
+npm i --save @fortawesome/fontawesome-svg-core
+
+// font awesome doc
+https://fontawesome.com/docs/web/use-with/vue/

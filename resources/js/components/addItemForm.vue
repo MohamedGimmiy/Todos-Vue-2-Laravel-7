@@ -1,7 +1,9 @@
 <template>
     <div class="addItem">
         <input type="text" class="input" placeholder="Add Todo">
-        <button type="submit" class="addButton"></button>
+        <button type="submit" class="addButton">
+            <font-awesome-icon icon="plus" class="plus" />
+        </button>
     </div>
 </template>
 
@@ -33,5 +35,9 @@
         border-bottom-right-radius: 4px;
         border-top-right-radius: 4px;
         background-color: white;
+    }
+    .plus{
+        font-size: 20px;
+        color: blue;
     }
 </style>
