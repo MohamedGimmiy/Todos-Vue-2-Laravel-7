@@ -3,7 +3,9 @@
     <head>
     </head>
     <body>
-        <div id="app"></div>
-        <script src="{{mix('js/app.js')}}"></script>
+        <div id="app">
+            <app/>
+        </div>
     </body>
+    <script src="{{mix('js/app.js')}}"></script>
 </html>
