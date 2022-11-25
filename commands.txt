@@ -1,0 +1,13 @@
+// laravel 7 needs php 7 so i installed wamp and switched php version to 7 using env variable path
+// then i installed it using composer command
+composer create-project laravel/laravel TodoList "7.*"
+
+// port
+http://127.0.0.1:8000
+
+// install front-end scaffolding
+composer require laravel/ui:^2.4
+
+php artisan ui vue
+
+npm i
