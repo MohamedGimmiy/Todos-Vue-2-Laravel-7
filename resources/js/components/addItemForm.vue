@@ -26,6 +26,7 @@
                     }).then(res => {
                         if(res.status == 201 || res.status == 200 || res.status == 'success'){
                             this.item.name = null;
+                            
                         }
                     })
                 }

@@ -79,10 +79,11 @@ class TodosController extends Controller
         $todo = Todo::findOrFail($id);
 
         $request->validate([
-            'todos' => 'required',
             'completed' => 'required'
         ]);
-        $todo->update($request->all());
+
+        $todo->completed = $request->completed;
+        $todo->save();
 
         return response()->json([
             'todo' => $todo,
