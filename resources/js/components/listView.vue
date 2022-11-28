@@ -4,6 +4,8 @@
             <list-item-vue
             :item="item"
             class="item"
+
+            v-on:reloadTodos="getTodos()"
             />
         </div>
     </div>
@@ -29,6 +31,7 @@ export default {
             })
         }
     },
+    // vue life cycle
     created(){
         this.getTodos()
     }

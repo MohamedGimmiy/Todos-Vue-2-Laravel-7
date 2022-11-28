@@ -642,6 +642,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _listView_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./listView.vue */ "./resources/js/components/listView.vue");
 //
 //
 //
@@ -652,6 +653,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -660,15 +662,19 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
+  components: {
+    listViewVue: _listView_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   methods: {
     addItem: function addItem() {
       var _this = this;
       if (this.item.name !== '') {
-        axios.post('api/todos/store', {
+        axios.post('api/todos/store/', {
           todos: this.item.name
         }).then(function (res) {
           if (res.status == 201 || res.status == 200 || res.status == 'success') {
-            _this.item.name = null;
+            alert('Item Added!');
+            _this.$emit('reloadTodos');
           }
         });
       }
@@ -707,11 +713,24 @@ __webpack_require__.r(__webpack_exports__);
   props: ['item'],
   methods: {
     updateTodo: function updateTodo() {
+      var _this = this;
       axios.post('api/todos/update/' + this.item.id, {
         completed: this.item.completed
       }).then(function (res) {
         if (res.status == 201 || res.status == 200 || res.status == 'success') {
           alert('Item Updated successfully');
+          _this.$emit('reloadTodos');
+        }
+      });
+    },
+    deleteTodo: function deleteTodo() {
+      var _this2 = this;
+      axios.post('api/todos/delete/' + this.item.id, {
+        completed: this.item.completed
+      }).then(function (res) {
+        if (res.status == 201 || res.status == 200 || res.status == 'success') {
+          alert('Item Removed successfully');
+          _this2.$emit('reloadTodos');
         }
       });
     }
@@ -732,6 +751,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _listItem_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./listItem.vue */ "./resources/js/components/listItem.vue");
+//
+//
 //
 //
 //
@@ -764,6 +785,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   },
+  // vue life cycle
   created: function created() {
     this.getTodos();
   }
@@ -39194,7 +39216,14 @@ var render = function () {
     _vm._v(" "),
     _c(
       "button",
-      { staticClass: "delete" },
+      {
+        staticClass: "delete",
+        on: {
+          click: function ($event) {
+            return _vm.deleteTodo()
+          },
+        },
+      },
       [_c("font-awesome-icon", { attrs: { icon: "trash" } })],
       1
     ),
@@ -39229,7 +39258,17 @@ var render = function () {
       return _c(
         "div",
         { key: index },
-        [_c("list-item-vue", { staticClass: "item", attrs: { item: item } })],
+        [
+          _c("list-item-vue", {
+            staticClass: "item",
+            attrs: { item: item },
+            on: {
+              reloadTodos: function ($event) {
+                return _vm.getTodos()
+              },
+            },
+          }),
+        ],
         1
       )
     }),

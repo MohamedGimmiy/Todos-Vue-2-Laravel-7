@@ -9,7 +9,7 @@
 
 <script>
 
-
+import listViewVue from './listView.vue';
     export default {
         data: function () {
             return {
@@ -18,15 +18,16 @@
                 }
             }
         },
+        components:{listViewVue},
         methods: {
             addItem() {
                 if(this.item.name !== '') {
-                    axios.post('api/todos/store', {
+                    axios.post('api/todos/store/', {
                         todos: this.item.name
                     }).then(res => {
                         if(res.status == 201 || res.status == 200 || res.status == 'success'){
-                            this.item.name = null;
-                            
+                            alert('Item Added!');
+                            this.$emit('reloadTodos');
                         }
                     })
                 }
