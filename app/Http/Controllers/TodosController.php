@@ -38,7 +38,7 @@ class TodosController extends Controller
     public function store(Request $request)
     {
         $todo = $request->all();
-        Todo::ctreate($request->all());
+        Todo::create($request->all());
         return response()->json([
             'todo' => $todo,
             'status' => 'success'

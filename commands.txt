@@ -29,3 +29,6 @@ npm i --save @fortawesome/fontawesome-svg-core
 
 // font awesome doc
 https://fontawesome.com/docs/web/use-with/vue/
+
+// install axios
+npm i --save axios

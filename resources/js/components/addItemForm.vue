@@ -1,7 +1,7 @@
 <template>
     <div class="addItem">
-        <input type="text" class="input" placeholder="Add Todo">
-        <button type="submit" class="addButton">
+        <input type="text" class="input" placeholder="Add Todo" v-model="item.name">
+        <button type="submit" class="addButton" @click="addItem()">
             <font-awesome-icon icon="plus" class="plus" />
         </button>
     </div>
@@ -9,8 +9,28 @@
 
 <script>
 
-    export default {
 
+    export default {
+        data: function () {
+            return {
+                item : {
+                    name : ''
+                }
+            }
+        },
+        methods: {
+            addItem() {
+                if(this.item.name !== '') {
+                    axios.post('api/todos/store', {
+                        todos: this.item.name
+                    }).then(res => {
+                        if(res.status == 201 || res.status == 200 || res.status == 'success'){
+                            this.item.name = null;
+                        }
+                    })
+                }
+            }
+        }
     }
 </script>
 <style scoped>
